@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+    background-color: #4CAF50;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2em;
+}
+
+#game-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#player-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#player-form input, #player-form button {
+    margin: 0.5em;
+}
+
+#game-board.hidden {
+    display: none;
+}
+
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px; /* Ajusta este valor si deseas cambiar el tamaño del tablero */
+    margin: 1em 0;
+}
+
+#board div {
+    width: 50px; /* Ajusta este valor si deseas cambiar el tamaño de las celdas */
+    height: 50px; /* Ajusta este valor si deseas cambiar el tamaño de las celdas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    margin: -1px 0 0 -1px; /* Ajusta los márgenes si es necesario */
+    cursor: pointer;
+    font-size: 1.5em; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+#timer {
+    font-size: 1.5em;
+    margin: 1em 0;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-content {
+    background-color: white;
+    padding: 2em;
+    border-radius: 5px;
+    width: 300px;
+}
+
+#close-modal {
+    cursor: pointer;
+    float: right;
+}
