@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startGame() {
         game.playerName = playerNameInput.value;
         if (game.playerName.length < 3) {
-            showModal('El nombre debe tener al menos 3 letras.');
+            alert('El nombre debe tener al menos 3 letras.');
             return;
         }
 
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         boardElement.innerHTML = '';
         game.board.forEach(function(letter, index) {
             var cell = document.createElement('div');
-            cell.className = 'cell';
             cell.textContent = letter;
             cell.addEventListener('click', function() {
                 selectLetter(index);
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTimer() {
         if (game.timeLeft <= 0) {
             clearInterval(game.timer);
-            showModal('El tiempo ha terminado. Tu puntaje es: ' + game.score);
+            alert('El tiempo ha terminado. Tu puntaje es: ' + game.score);
             return;
         }
         game.timeLeft--;
@@ -82,6 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     endGameButton.addEventListener('click', function() {
         clearInterval(game.timer);
-        showModal('Juego terminado. Tu puntaje es: ' + game.score);
+        alert('Juego terminado. Tu puntaje es: ' + game.score);
     });
 });
