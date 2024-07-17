@@ -11,6 +11,7 @@
     <header>
         <h1>Juego de Boggle</h1>
         <a href="https://github.com/matiashuangyue/Boogle-Game" target="_blank">Ver en GitHub</a>
+        <a href="/how-to-play.html" id="how-to-play-link">Cómo Jugar</a>
     </header>
     <main>
         <section id="game-section">
@@ -22,7 +23,11 @@
             <div id="game-board" class="hidden">
                 <div id="timer"></div>
                 <div id="score">Puntaje: 0</div>
-                <div id="current-word"></div>
+                <div id="current-word-container">
+                    <div id="current-word"></div>
+                    <button id="delete-word">Eliminar</button>
+                    <button id="validate-word">Validar</button>
+                </div>
                 <div id="board"></div>
                 <button id="end-game">Terminar Juego</button>
                 <div id="word-list"></div>
