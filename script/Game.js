@@ -1,5 +1,3 @@
-'use strict';
-
 document.addEventListener('DOMContentLoaded', function() {
     var playerForm = document.getElementById('player-form');
     var playerNameInput = document.getElementById('player-name');
@@ -10,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var wordListElement = document.getElementById('word-list');
     var endGameButton = document.getElementById('end-game');
     var boardElement = document.getElementById('board');
+    var deleteWordButton = document.getElementById('delete-word');
+    var validateWordButton = document.getElementById('validate-word');
 
     var game = {
         timer: null,
@@ -54,14 +54,36 @@ document.addEventListener('DOMContentLoaded', function() {
             var cell = document.createElement('div');
             cell.textContent = letter;
             cell.addEventListener('click', function() {
-                selectLetter(index);
+                selectLetter(letter);
             });
             boardElement.appendChild(cell);
         });
     }
 
-    function selectLetter(index) {
-        // Lógica para seleccionar letras
+    function selectLetter(letter) {
+        game.currentWord += letter;
+        currentWordElement.textContent = game.currentWord;
+    }
+
+    function validateWord(word) {
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.title !== 'No Definitions Found') {
+                    game.wordsFound.push(word);
+                    game.score += word.length; // Incrementar el puntaje basado en la longitud de la palabra
+                    scoreElement.textContent = 'Puntaje: ' + game.score;
+                    wordListElement.innerHTML += `<li>${word}</li>`;
+                    game.currentWord = ''; // Reiniciar la palabra actual
+                    currentWordElement.textContent = '';
+                } else {
+                    alert('Palabra no válida');
+                }
+            })
+            .catch(error => {
+                console.error('Error al validar la palabra:', error);
+                alert('Error al validar la palabra. Inténtalo de nuevo.');
+            });
     }
 
     function updateTimer() {
@@ -82,5 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
     endGameButton.addEventListener('click', function() {
         clearInterval(game.timer);
         alert('Juego terminado. Tu puntaje es: ' + game.score);
+    });
+
+    deleteWordButton.addEventListener('click', function() {
+        game.currentWord = '';
+        currentWordElement.textContent = '';
+    });
+
+    validateWordButton.addEventListener('click', function() {
+        if (game.currentWord.length > 0) {
+            validateWord(game.currentWord);
+        }
     });
 });
